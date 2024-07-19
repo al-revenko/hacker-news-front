@@ -1,8 +1,8 @@
 import { RouteObject, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import ROUTES from '~/const/routes';
-import Home from '~/pages/Home';
-import Article from '~/pages/Article';
-import NotFound from '~/pages/NotFound';
+import Home from '~/components/pages/Home';
+import Article from '~/components/pages/Article';
+import NotFound from '~/components/pages/NotFound';
 
 const routes: RouteObject[] = [
   {
