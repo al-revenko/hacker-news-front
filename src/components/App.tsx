@@ -1,10 +1,13 @@
+import { ThemeProvider } from '@mui/material';
 import Router from '~/components/Router';
+import muiTheme from '~/libs/muiTheme';
 
 function App() {
   return (
     <>
-      <h1>Vite + React</h1>
-      <Router />
+      <ThemeProvider theme={muiTheme}>
+        <Router />
+      </ThemeProvider>
     </>
   );
 }
