@@ -7,9 +7,10 @@ type BreakpointsType = {
 const BREAKPOINTS: BreakpointsType = {
   xs: 360,
   sm: 768,
-  md: 1440,
-  lg: 1920,
-  xl: 3240,
+  md: 1024,
+  lg: 1440,
+  xl: 1920,
+  xxl: 3240,
 } as const;
 
 export default BREAKPOINTS;
