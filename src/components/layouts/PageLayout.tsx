@@ -1,14 +1,24 @@
 import { styled } from '@mui/material';
-import { PropsWithChildren } from 'react';
+import { ComponentProps, PropsWithChildren } from 'react';
 import COLORS from '~/const/colors';
+import Header from '~/components/ui/header/Header';
 
-interface Props extends PropsWithChildren {}
+interface Props extends PropsWithChildren {
+  headerProps?: ComponentProps<typeof Header>;
+}
 
-const PageLayout = ({ children }: Props) => {
-  return <Content>{children}</Content>;
+const PageLayout = ({ headerProps, children }: Props) => {
+  return (
+    <>
+      <Header {...headerProps} />
+      <Content>{children}</Content>
+    </>
+  );
 };
 
-const Content = styled('main')`
+const Content = styled('div')`
+  padding-top: 70px;
+  padding-bottom: 30px;
   min-height: 100dvh;
   width: 100%;
   background-color: ${COLORS.secondary};
