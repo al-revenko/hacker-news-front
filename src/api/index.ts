@@ -20,5 +20,5 @@ export async function getArticlesList(category: ListArticlesType, count: number)
     }
   }
 
-  return feedList.slice(0, count);
+  return feedList.slice(0, count).sort((a, b) => b.time - a.time);
 }

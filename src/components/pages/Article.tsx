@@ -7,7 +7,7 @@ const Article = () => {
   const { id } = useParams<'id'>();
 
   return (
-    <PageLayout headerProps={{leftChild: <LinkBack to={ROUTES.HOME} />}}>
+    <PageLayout headerProps={{ leftChild: <LinkBack to={ROUTES.HOME} /> }}>
       <h1>Article {id}</h1>
     </PageLayout>
   );

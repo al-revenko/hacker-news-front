@@ -9,6 +9,11 @@ const ContentLayout = ({ children }: Props) => {
 
 const Content = styled(Container)`
   height: 100%;
+
+  ${({ theme }) => theme.breakpoints.down('md')} {
+    padding-left: ${({ theme }) => theme.spacing(1)};
+    padding-right: ${({ theme }) => theme.spacing(1)};
+  }
 `;
 
 export default ContentLayout;
