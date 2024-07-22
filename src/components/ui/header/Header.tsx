@@ -1,9 +1,9 @@
 import ContentLayout from '~/components/layouts/ContentLayout';
-import { AppBar, Typography, TypographyProps } from '@mui/material';
+import { AppBar } from '@mui/material';
 import COLORS from '~/const/colors';
 import styled from '@emotion/styled';
 import { ReactNode } from 'react';
-
+import LogoIcon from '~/assets/icons/logo.svg?react';
 interface HeaderProps {
   leftChild?: ReactNode;
   rightChild?: ReactNode;
@@ -15,7 +15,7 @@ const Header = ({ leftChild, rightChild }: HeaderProps) => {
       <ContentLayout>
         <Content>
           <ChildContainer>{leftChild}</ChildContainer>
-          <Logo variant="h1" component="span">Y</Logo>
+          <Logo />
           <ChildContainerEnd>{rightChild}</ChildContainerEnd>
         </Content>
       </ContentLayout>
@@ -29,22 +29,14 @@ const MenuBar = styled(AppBar)`
 `;
 
 const Content = styled('div')`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 60px 1fr;
+  grid-template-rows: 60px;
 `;
 
-const Logo = styled(Typography)<TypographyProps & {component: React.ElementType}>`
-  width: 42px;
-  height: 42px;
-  margin: 0 auto;
-  padding: 5px 12px;
-  font-size: 28px;
-  color: ${COLORS.primary};
-  background-color: ${COLORS.white};
-  filter: drop-shadow(1px 1px 1px ${COLORS.fontSecond});
-  border-radius: 3px;
+const Logo = styled(LogoIcon)`
+  width: 100%;
+  height: 100%;
 `;
 
 const ChildContainer = styled('div')`
