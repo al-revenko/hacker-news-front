@@ -30,6 +30,10 @@ const muiTheme = createTheme({
       white: COLORS.white,
       black: COLORS.black,
     },
+
+    action: {
+      disabled: COLORS.disabled,
+    },
   },
   spacing: (factor: number) => `${factor * miniUnit}px`,
 

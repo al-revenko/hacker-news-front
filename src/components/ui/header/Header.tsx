@@ -1,5 +1,5 @@
 import ContentLayout from '~/components/layouts/ContentLayout';
-import { AppBar } from '@mui/material';
+import { AppBar, Box, LinearProgress } from '@mui/material';
 import COLORS from '~/const/colors';
 import styled from '@emotion/styled';
 import { ReactNode } from 'react';
@@ -7,9 +7,10 @@ import LogoIcon from '~/assets/icons/logo.svg?react';
 interface HeaderProps {
   leftChild?: ReactNode;
   rightChild?: ReactNode;
+  isLoading?: boolean;
 }
 
-const Header = ({ leftChild, rightChild }: HeaderProps) => {
+const Header = ({ leftChild, rightChild, isLoading }: HeaderProps) => {
   return (
     <MenuBar>
       <ContentLayout>
@@ -19,6 +20,12 @@ const Header = ({ leftChild, rightChild }: HeaderProps) => {
           <ChildContainerEnd>{rightChild}</ChildContainerEnd>
         </Content>
       </ContentLayout>
+
+      {isLoading && (
+        <ProgressBox>
+          <ProgressBar color="secondary" />
+        </ProgressBox>
+      )}
     </MenuBar>
   );
 };
@@ -26,6 +33,19 @@ const Header = ({ leftChild, rightChild }: HeaderProps) => {
 const MenuBar = styled(AppBar)`
   background-color: ${COLORS.primary};
   height: 60px;
+`;
+
+const ProgressBox = styled(Box)`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+`;
+
+const ProgressBar = styled(LinearProgress)`
+  width: 100%;
+  height: 3px;
+  background-color: ${COLORS.primary};
 `;
 
 const Content = styled('div')`

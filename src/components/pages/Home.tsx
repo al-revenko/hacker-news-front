@@ -7,12 +7,17 @@ import NewsFeed from '~/components/ui/newsFeed/NewsFeed';
 import ContentLayout from '~/components/layouts/ContentLayout';
 
 const Home = () => {
-  const { data, mutate } = useSWR(SWRKEYS.getNews, (key) => getArticlesList(key, 100), {
+  const { data, isValidating, mutate } = useSWR(SWRKEYS.getNewsList, (key) => getArticlesList(key, 100), {
     refreshInterval: 60000,
   });
 
   return (
-    <PageLayout headerProps={{ rightChild: <ButtonReload size="large" color="secondary" onClick={() => mutate()} /> }}>
+    <PageLayout
+      headerProps={{
+        rightChild: <ButtonReload size="large" color="secondary" onClick={() => mutate()} disabled={isValidating} />,
+        isLoading: isValidating,
+      }}
+    >
       <main>
         <section>
           <ContentLayout>

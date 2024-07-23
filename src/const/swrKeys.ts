@@ -1,3 +1,3 @@
 export enum SWRKEYS {
-  getNews = 'news',
+  getNewsList = 'news',
 }
