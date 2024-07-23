@@ -14,6 +14,10 @@ const routes: RouteObject[] = [
     element: <Article />,
   },
   {
+    path: ROUTES.NOTFOUND,
+    element: <NotFound />,
+  },
+  {
     path: '*',
     element: <NotFound />,
   },
