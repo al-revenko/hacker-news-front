@@ -1,11 +1,11 @@
 import Typography from '@mui/material/Typography';
+import { PropsWithChildren } from 'react';
 
-export interface HeadingProp {
-  title: string;
+export interface HeadingProp extends PropsWithChildren {
   variant: 'h1' | 'h2' | 'h3';
 }
 
-const Heading = ({ title, variant }: HeadingProp) => {
+const Heading = ({ variant, children }: HeadingProp) => {
   let fontSize: number;
 
   switch (variant) {
@@ -22,7 +22,7 @@ const Heading = ({ title, variant }: HeadingProp) => {
 
   return (
     <Typography variant={variant} fontSize={fontSize}>
-      {title}
+      {children}
     </Typography>
   );
 };

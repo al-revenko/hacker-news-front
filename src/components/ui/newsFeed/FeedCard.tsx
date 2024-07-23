@@ -21,7 +21,7 @@ const FeedCard = ({ id, title, user, points, time, positionNumber }: FeedCardPro
       <PointsCount>{points ? points : 0}</PointsCount>
       <Decor className="article-decor" />
       <Content>
-        <Heading variant="h2" title={title} />
+        <Heading variant="h2">{title}</Heading>
         <Info>
           <InfoData>{`#${positionNumber}`}</InfoData>
           <InfoData>
