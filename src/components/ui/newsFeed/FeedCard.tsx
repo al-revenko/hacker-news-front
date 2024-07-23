@@ -1,20 +1,18 @@
-import { Link } from 'react-router-dom';
-import { FeedItem } from '~/api/types';
-import Heading from '../heading/Heading';
 import { styled } from '@mui/material';
+import { Link } from 'react-router-dom';
+import { timestampFormat } from '~/utils';
+import { FeedItem } from '~/api/types';
 import COLORS from '~/const/colors';
-import dayjs from 'dayjs';
+import Heading from '~/components/ui/heading/Heading';
 
 interface FeedCardProps extends Pick<FeedItem, 'id' | 'user' | 'title' | 'points' | 'time'> {
   positionNumber: number;
 }
 
 const FeedCard = ({ id, title, user, points, time, positionNumber }: FeedCardProps) => {
-  const dateFormat = 'DD MMMM';
-  const timeFormat = 'HH:mm a';
-  const dayjsInst = dayjs.unix(time);
+  const timestamp = timestampFormat(time);
 
-  const dateString = `in ${dayjsInst.format(dateFormat)} at ${dayjsInst.format(timeFormat)}`;
+  const dateString = `in ${timestamp.date} at ${timestamp.time}`;
 
   return (
     <ArticleLink to={`/article/${id}`}>
