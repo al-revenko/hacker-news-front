@@ -17,8 +17,8 @@ const PageLayout = ({ headerProps, children }: Props) => {
 };
 
 const Content = styled('div')`
-  padding-top: 70px;
-  padding-bottom: 30px;
+  padding-top: ${({ theme }) => theme.spacing(9)};
+  padding-bottom: ${({ theme }) => theme.spacing(4)};
   min-height: 100dvh;
   width: 100%;
   background-color: ${COLORS.secondary};
