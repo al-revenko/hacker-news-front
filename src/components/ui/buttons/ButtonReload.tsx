@@ -4,7 +4,7 @@ import { BtnProps } from './btnProps.type';
 
 const ButtonReload = ({ size, ...props }: BtnProps) => {
   return (
-    <IconButton aria-label="reload" {...props}>
+    <IconButton {...props}>
       <CachedIcon fontSize={size} />
     </IconButton>
   );

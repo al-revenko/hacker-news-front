@@ -4,7 +4,7 @@ import { BtnProps } from './btnProps.type';
 
 const ButtonBack = ({ size, ...props }: BtnProps) => {
   return (
-    <IconButton aria-label="reload" {...props}>
+    <IconButton {...props}>
       <FirstPageIcon fontSize={size} />
     </IconButton>
   );
