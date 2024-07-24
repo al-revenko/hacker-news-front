@@ -1,18 +1,19 @@
-import { styled } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { styled } from '@mui/material';
+import ForumIcon from '@mui/icons-material/Forum';
 import { timestampFormat } from '~/utils';
 import { FeedItem } from '~/api/types';
 import COLORS from '~/const/colors';
 import Heading from '~/components/ui/heading/Heading';
 
-interface FeedCardProps extends Pick<FeedItem, 'id' | 'user' | 'title' | 'points' | 'time'> {
+interface FeedCardProps extends Pick<FeedItem, 'id' | 'user' | 'title' | 'points' | 'time' | 'comments_count'> {
   positionNumber: number;
 }
 
-const FeedCard = ({ id, title, user, points, time, positionNumber }: FeedCardProps) => {
-  const timestamp = timestampFormat(time);
+const FeedCard = ({ id, title, user, points, time, comments_count, positionNumber }: FeedCardProps) => {
+  const timestamp = timestampFormat(time, 'DD.MM.YYYY');
 
-  const dateString = `in ${timestamp.date} at ${timestamp.time}`;
+  const dateString = `${timestamp.date}`;
 
   return (
     <ArticleLink to={`/article/${id}`}>
@@ -27,6 +28,10 @@ const FeedCard = ({ id, title, user, points, time, positionNumber }: FeedCardPro
             <InfoData className="user-name">{`${user ? user : 'unknown'}`}</InfoData>
           </InfoData>
           <InfoData>{dateString}</InfoData>
+          <CommentsStat>
+            <ForumIcon fontSize="inherit" />
+            {comments_count}
+          </CommentsStat>
         </Info>
       </Content>
     </ArticleLink>
@@ -34,9 +39,9 @@ const FeedCard = ({ id, title, user, points, time, positionNumber }: FeedCardPro
 };
 
 const ArticleLink = styled(Link)`
-  min-height: 55px;
+  height: 55px;
   display: grid;
-  grid-template-columns: 36px max-content 1fr;
+  grid-template-columns: 50px max-content 1fr;
   text-decoration: none;
   color: ${COLORS.font};
 
@@ -47,7 +52,7 @@ const ArticleLink = styled(Link)`
   }
 
   ${({ theme }) => theme.breakpoints.down('md')} {
-    min-height: 90px;
+    height: 100px;
   }
 `;
 
@@ -64,7 +69,7 @@ const PointsCount = styled('span')`
   font-family: ${({ theme }) => theme.typography.fontFamily};
   color: ${COLORS.primary};
   font-weight: 700;
-  font-size: 18px;
+  font-size: 20px;
 `;
 
 const Content = styled('div')`
@@ -79,7 +84,7 @@ const Content = styled('div')`
     align-items: center;
   }
 
-  ${({ theme }) => theme.breakpoints.down(500)} {
+  ${({ theme }) => theme.breakpoints.down(450)} {
     & > h2 {
       font-size: large;
     }
@@ -89,26 +94,26 @@ const Content = styled('div')`
 const Info = styled('div')`
   display: flex;
   gap: ${({ theme }) => theme.spacing(0.5)};
-
-  ${({ theme }) => theme.breakpoints.down(500)} {
-    & > h2 {
-      font-size: large;
-    }
-  }
 `;
 
 const InfoData = styled('span')`
   color: ${COLORS.fontSecond};
-  font-size: 16px;
+  font-size: 14px;
   font-family: ${({ theme }) => theme.typography.fontFamily};
 
   &.user-name {
     font-weight: 600;
   }
 
-  ${({ theme }) => theme.breakpoints.down(500)} {
+  ${({ theme }) => theme.breakpoints.down(450)} {
     font-size: 12px;
   }
+`;
+
+const CommentsStat = styled(InfoData)`
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing(0.5)};
 `;
 
 export default FeedCard;
