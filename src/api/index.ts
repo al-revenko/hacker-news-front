@@ -1,4 +1,4 @@
-import { FeedItem, ListArticlesType } from './types';
+import { FeedItem, Item, ListArticlesType } from './types';
 import { articlesPerPage, axiosInst, maxPageCount } from './config';
 import { isOk } from './utils';
 
@@ -24,8 +24,8 @@ export async function getArticlesList(category: ListArticlesType, count: number)
   return feedList.slice(0, count).sort((a, b) => b.time - a.time);
 }
 
-export async function getArticle(id: number | string): Promise<FeedItem | null> {
-  const res = await axiosInst.get<FeedItem>(`item/${id}.json`);
+export async function getArticle(id: number | string): Promise<Item | null> {
+  const res = await axiosInst.get<Item>(`item/${id}.json`);
 
   if (isOk(res) && res.data.type === 'link') {
     return res.data;
