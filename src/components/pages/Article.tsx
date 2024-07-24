@@ -11,10 +11,13 @@ import LinkBack from '~/components/ui/links/LinkBack';
 import ButtonPage from '~/components/ui/buttons/ButtonPage';
 import CommentsBlock from '~/components/ui/commentsBlock/CommentsBlock';
 import Heading from '~/components/ui/heading/Heading';
+import ButtonReload from '../ui/buttons/ButtonReload';
 
 const Article = () => {
   const { id } = useParams<'id'>();
-  const { data, isValidating } = useSWRImmutable(id, getArticle);
+  const { data, isValidating, mutate } = useSWRImmutable(id, getArticle, {
+    refreshInterval: 60000,
+  });
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -42,6 +45,7 @@ const Article = () => {
             <CommentSection>
               <Heading variant="h2">
                 {data.comments_count > 0 ? `Comments: ${data.comments_count}` : 'No comments here'}
+                <ButtonReload onClick={() => mutate()} />
               </Heading>
               <CommentsBlock {...data} />
             </CommentSection>
@@ -62,6 +66,8 @@ const CommentSection = styled('section')`
   & > h2 {
     font-family: ${({ theme }) => theme.typography.fontFamily};
     padding-bottom: ${({ theme }) => theme.spacing(4)};
+    display: flex;
+    align-items: center;
   }
 `;
 
