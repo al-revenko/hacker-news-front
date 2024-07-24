@@ -12,7 +12,7 @@ const ArticleHead = ({ title, user, time, domain, points }: Props) => {
   const dateString = `in ${timestamp.date} at ${timestamp.time}`;
 
   return (
-    <Container>
+    <div>
       <Heading variant="h1">{title}</Heading>
       <InfoContainer>
         {points && (
@@ -30,13 +30,9 @@ const ArticleHead = ({ title, user, time, domain, points }: Props) => {
         {domain && <DomainLink href={'http://' + domain}>{' ' + domain}</DomainLink>}
         <InfoText>{dateString}</InfoText>
       </InfoContainer>
-    </Container>
+    </div>
   );
 };
-
-const Container = styled('div')`
-  padding-top: ${({ theme }) => theme.spacing(2)};
-`;
 
 const DomainLink = styled('a')`
   color: ${COLORS.primary};
