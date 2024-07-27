@@ -1,4 +1,4 @@
-export type ListArticlesType = 'news' | 'newest' | 'ask' | 'show' | 'jobs';
+export type FeedCategory = 'news' | 'newest' | 'ask' | 'show' | 'jobs';
 
 export interface FeedItem {
   id: number;

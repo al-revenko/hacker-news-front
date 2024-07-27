@@ -3,7 +3,7 @@ import { styled } from '@mui/material';
 import useSWRImmutable from 'swr/immutable';
 import { useNavigate, useParams } from 'react-router-dom';
 import ROUTES from '~/const/routes';
-import { getArticle } from '~/api';
+import { getFeedItem } from '~/api';
 import ContentLayout from '~/components/layouts/ContentLayout';
 import PageLayout from '~/components/layouts/PageLayout';
 import ArticleHead from '~/components/ui/articleHead/ArticleHead';
@@ -11,13 +11,14 @@ import LinkBack from '~/components/ui/links/LinkBack';
 import ButtonPage from '~/components/ui/buttons/ButtonPage';
 import CommentsBlock from '~/components/ui/commentsBlock/CommentsBlock';
 import Heading from '~/components/ui/heading/Heading';
-import ButtonReload from '../ui/buttons/ButtonReload';
+import ButtonReload from '~/components/ui/buttons/ButtonReload';
 
 const Article = () => {
   const { id } = useParams<'id'>();
-  const { data, isValidating, mutate } = useSWRImmutable(id, getArticle, {
+  const { data, isValidating, mutate } = useSWRImmutable(id, getFeedItem, {
     refreshInterval: 60000,
   });
+
   const navigate = useNavigate();
 
   useEffect(() => {
