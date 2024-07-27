@@ -1,15 +1,15 @@
-import { useState } from 'react';
+import { ComponentType, useState } from 'react';
 import { styled } from '@mui/material';
 import { Item } from '~/api/types';
 import COLORS from '~/const/colors';
 import { timestampFormat } from '~/utils';
 import ButtonArithmetic from '~/components/ui/buttons/ButtonArithmetic';
-// eslint-disable-next-line import/no-cycle
-import CommentsBlock from './CommentsBlock';
 
-interface Props extends Pick<Item, 'user' | 'time' | 'content' | 'comments'> {}
+interface Props extends Pick<Item, 'user' | 'time' | 'content' | 'comments'> {
+  CommentsList: ComponentType<{ comments: Item['comments'] }>;
+}
 
-const Comment = ({ user, time, content, comments }: Props) => {
+const Comment = ({ CommentsList, user, time, content, comments }: Props) => {
   const [childsDispaly, setChildsDisplay] = useState(false);
 
   const timestamp = timestampFormat(time);
@@ -41,7 +41,7 @@ const Comment = ({ user, time, content, comments }: Props) => {
       </CommentContainer>
       {childsDispaly && (
         <ChildrenContainer>
-          <CommentsBlock comments={comments} />
+          <CommentsList comments={comments} />
         </ChildrenContainer>
       )}
     </>
@@ -49,6 +49,7 @@ const Comment = ({ user, time, content, comments }: Props) => {
 };
 
 const CommentContainer = styled('article')`
+  padding-bottom: ${({ theme }) => theme.spacing(4)};
   display: grid;
   grid-template-columns: 10px 1fr;
   gap: ${({ theme }) => theme.spacing(1)};
@@ -104,7 +105,6 @@ const Content = styled('div')`
 `;
 
 const ChildrenContainer = styled('div')`
-  padding: ${({ theme }) => theme.spacing(3, 0)};
   padding-left: ${({ theme }) => theme.spacing(1)};
 `;
 

@@ -1,6 +1,4 @@
-import { styled } from '@mui/material';
 import { Item } from '~/api/types';
-// eslint-disable-next-line import/no-cycle
 import Comment from './Comment';
 
 interface Props {
@@ -16,19 +14,13 @@ const CommentsBlock = ({ comments }: Props) => {
 
       return (
         <li key={comment.id}>
-          <Comment {...comment} />
+          <Comment {...comment} CommentsList={CommentsBlock} />
         </li>
       );
     });
   };
 
-  return <List>{renderComments()}</List>;
+  return <ul>{renderComments()}</ul>;
 };
-
-const List = styled('ul')`
-  display: flex;
-  flex-direction: column;
-  gap: ${({ theme }) => theme.spacing(4)};
-`;
 
 export default CommentsBlock;
