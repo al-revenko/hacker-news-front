@@ -46,7 +46,7 @@ const Article = () => {
             <CommentSection>
               <Heading variant="h2">
                 {data.comments_count > 0 ? `Comments: ${data.comments_count}` : 'No comments here'}
-                <ButtonReload onClick={() => mutate()} />
+                <ButtonReload onClick={() => mutate()} disabled={isValidating} />
               </Heading>
               <CommentsBlock {...data} />
             </CommentSection>
