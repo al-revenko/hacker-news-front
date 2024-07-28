@@ -6,6 +6,7 @@
   "scripts": {
     "start": "vite",
     "build": "tsc -b && vite build",
+    "docker:build": "docker build -t hacker-news-front .",
     "preview": "vite preview",
     "lint": "yarn lint:eslint & yarn lint:prettier & yarn lint:stylelint",
     "fix": "yarn fix:eslint & yarn fix:prettier & yarn fix:stylelint",
