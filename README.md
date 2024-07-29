@@ -30,6 +30,20 @@ git clone -b feature https://github.com/al-revenko/hacker-news-back.git
 yarn
 ```
 
+#### Создаём .env файл в корне frontend приложения и копируем в него содержимое файла .env.example:
+
+```bash
+VITE_BACKEND_URL = 'http://localhost:4000'
+```
+
+#### То же самое делаем и в корне backend приложения
+
+```bash
+API_URL = "https://api.hnpwa.com/v0/" 
+HOST = "localhost"
+PORT = "4000"
+```
+
 ## Запуск dev сервера
 
 #### Первым запускаем dev сервер бэкенда в его папке
