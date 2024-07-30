@@ -13,7 +13,7 @@ export async function getFeedList(category: FeedCategory, count: number = 0) {
   const res = await axiosInst.get<FeedItem[]>(`feed/${category}?count=${count}`);
 
   if (isOk(res) && Array.isArray(res.data)) {
-    return res.data.slice(0, count).sort((a, b) => b.time - a.time);
+    return res.data;
   }
 
   return null;
