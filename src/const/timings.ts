@@ -1,3 +1,3 @@
 export const TIMINGS = {
-  dataUpdateTimeMS: 6000,
+  dataUpdateTimeMS: 60000,
 } as const;
