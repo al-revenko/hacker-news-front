@@ -1,14 +1,15 @@
 import useSWR from 'swr';
 import { getFeedList } from '~/api';
+import { TIMINGS } from '~/const/timings';
+import { SWRKEYS } from '~/const/swrKeys';
 import PageLayout from '~/components/layouts/PageLayout';
 import ButtonReload from '~/components/ui/buttons/ButtonReload';
-import { SWRKEYS } from '~/const/swrKeys';
 import NewsFeed from '~/components/ui/newsFeed/NewsFeed';
 import ContentLayout from '~/components/layouts/ContentLayout';
 
 const Home = () => {
   const { data, isValidating, mutate } = useSWR(SWRKEYS.getNewsList, (key) => getFeedList(key, 100), {
-    refreshInterval: 60000,
+    refreshInterval: TIMINGS.dataUpdateTimeMS,
   });
 
   return (

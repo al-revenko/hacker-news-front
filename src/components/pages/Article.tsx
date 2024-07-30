@@ -2,8 +2,9 @@ import { useEffect } from 'react';
 import { styled } from '@mui/material';
 import useSWRImmutable from 'swr/immutable';
 import { useNavigate, useParams } from 'react-router-dom';
-import ROUTES from '~/const/routes';
 import { getFeedItem } from '~/api';
+import ROUTES from '~/const/routes';
+import { TIMINGS } from '~/const/timings';
 import ContentLayout from '~/components/layouts/ContentLayout';
 import PageLayout from '~/components/layouts/PageLayout';
 import ArticleHead from '~/components/ui/articleHead/ArticleHead';
@@ -16,7 +17,7 @@ import ButtonReload from '~/components/ui/buttons/ButtonReload';
 const Article = () => {
   const { id } = useParams<'id'>();
   const { data, isValidating, mutate } = useSWRImmutable(id, getFeedItem, {
-    refreshInterval: 60000,
+    refreshInterval: TIMINGS.dataUpdateTimeMS,
   });
 
   const navigate = useNavigate();
