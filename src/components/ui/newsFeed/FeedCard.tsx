@@ -17,7 +17,7 @@ const FeedCard = ({ id, title, user, points, time, comments_count, positionNumbe
 
   return (
     <ArticleLink to={`/article/${id}`}>
-      <PointsCount>{points ? points : 0}</PointsCount>
+      <PointsCount>{points || 0}</PointsCount>
       <Decor className="article-decor" />
       <Content>
         <Heading variant="h2">{title}</Heading>
@@ -25,7 +25,7 @@ const FeedCard = ({ id, title, user, points, time, comments_count, positionNumbe
           <InfoData>{`#${positionNumber}`}</InfoData>
           <InfoData>
             {'by '}
-            <InfoData className="user-name">{`${user ? user : 'unknown'}`}</InfoData>
+            <InfoData className="user-name">{`${user || 'unknown'}`}</InfoData>
           </InfoData>
           <InfoData>{dateString}</InfoData>
           <CommentsStat>

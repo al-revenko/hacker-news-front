@@ -14,9 +14,7 @@ const Comment = ({ CommentsList, user, time, content, comments }: Props) => {
 
   const timestamp = timestampFormat(time);
 
-  const switchChildsDisplay = () => {
-    childsDispaly ? setChildsDisplay(false) : setChildsDisplay(true);
-  };
+  const switchChildsDisplay = () => setChildsDisplay((prev) => !prev);
 
   const setHTMLContent = () => {
     return { __html: content };
@@ -33,7 +31,7 @@ const Comment = ({ CommentsList, user, time, content, comments }: Props) => {
         </SideContainer>
         <div>
           <CommentHead>
-            <User className="comment-user">{user ? user : 'unknown'}</User>
+            <User className="comment-user">{user || 'unknown'}</User>
             <span>{`${timestamp.date} ${timestamp.time}`}</span>
           </CommentHead>
           <Content dangerouslySetInnerHTML={setHTMLContent()} />
