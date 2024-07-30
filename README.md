@@ -39,7 +39,7 @@ VITE_BACKEND_URL = 'http://localhost:4000'
 #### То же самое делаем и в корне backend приложения
 
 ```bash
-API_URL = "https://api.hnpwa.com/v0/" 
+API_URL = "https://api.hnpwa.com/v0/"
 HOST = "localhost"
 PORT = "4000"
 ```

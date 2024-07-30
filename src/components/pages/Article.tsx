@@ -35,7 +35,7 @@ const Article = () => {
         rightChild: data && data.url && (
           <ButtonPage href={data.url} LinkComponent={'a'} size="large" color="secondary" />
         ),
-        isLoading: isValidating,
+        showLoader: isValidating,
       }}
     >
       <ContentLayout>

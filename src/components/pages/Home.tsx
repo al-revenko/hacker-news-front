@@ -16,7 +16,7 @@ const Home = () => {
     <PageLayout
       headerProps={{
         rightChild: <ButtonReload size="large" color="secondary" onClick={() => mutate()} disabled={isValidating} />,
-        isLoading: isValidating,
+        showLoader: isValidating,
       }}
     >
       <main>

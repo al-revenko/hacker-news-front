@@ -7,10 +7,10 @@ import LogoIcon from '~/assets/icons/logo.svg?react';
 interface HeaderProps {
   leftChild?: ReactNode;
   rightChild?: ReactNode;
-  isLoading?: boolean;
+  showLoader?: boolean;
 }
 
-const Header = ({ leftChild, rightChild, isLoading }: HeaderProps) => {
+const Header = ({ leftChild, rightChild, showLoader }: HeaderProps) => {
   return (
     <MenuBar>
       <ContentLayout>
@@ -21,7 +21,7 @@ const Header = ({ leftChild, rightChild, isLoading }: HeaderProps) => {
         </Content>
       </ContentLayout>
 
-      {isLoading && (
+      {showLoader && (
         <ProgressBox>
           <ProgressBar color="secondary" />
         </ProgressBox>
