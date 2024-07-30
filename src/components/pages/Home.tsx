@@ -6,11 +6,24 @@ import PageLayout from '~/components/layouts/PageLayout';
 import ButtonReload from '~/components/ui/buttons/ButtonReload';
 import NewsFeed from '~/components/ui/newsFeed/NewsFeed';
 import ContentLayout from '~/components/layouts/ContentLayout';
+import Heading from '~/components/ui/heading/Heading';
 
 const Home = () => {
   const { data, isValidating, mutate } = useSWR(SWRKEYS.getNewsList, (key) => getFeedList(key, 100), {
     refreshInterval: TIMINGS.dataUpdateTimeMS,
   });
+
+  const renderContent = () => {
+    if (data && data.length > 0) {
+      return <NewsFeed feedItems={data || []} />;
+    }
+
+    if (!isValidating) {
+      return <Heading variant="h1">No news today</Heading>;
+    }
+
+    return null;
+  };
 
   return (
     <PageLayout
@@ -21,9 +34,7 @@ const Home = () => {
     >
       <main>
         <section>
-          <ContentLayout>
-            <NewsFeed feedItems={data ?? []} />
-          </ContentLayout>
+          <ContentLayout>{renderContent()}</ContentLayout>
         </section>
       </main>
     </PageLayout>
