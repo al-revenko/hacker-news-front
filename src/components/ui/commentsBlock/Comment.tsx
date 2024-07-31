@@ -1,5 +1,5 @@
 import { ComponentType, useState } from 'react';
-import { styled } from '@mui/material';
+import { styled, CircularProgress } from '@mui/material';
 import { Item } from '~/api/types';
 import COLORS from '~/const/colors';
 import { timestampFormat } from '~/utils';
@@ -11,10 +11,22 @@ interface Props extends Pick<Item, 'user' | 'time' | 'content' | 'comments'> {
 
 const Comment = ({ CommentsList, user, time, content, comments }: Props) => {
   const [childsDispaly, setChildsDisplay] = useState(false);
+  const [loaderIsShow, setLoaderIsShow] = useState(false);
 
   const timestamp = timestampFormat(time);
 
-  const switchChildsDisplay = () => setChildsDisplay((prev) => !prev);
+  const displayChilds = () => {
+    if (!childsDispaly) {
+      setLoaderIsShow(true);
+
+      setTimeout(() => {
+        setLoaderIsShow(false);
+        setChildsDisplay(true);
+      }, 500);
+    } else {
+      setChildsDisplay(false);
+    }
+  };
 
   const setHTMLContent = () => {
     return { __html: content };
@@ -24,9 +36,12 @@ const Comment = ({ CommentsList, user, time, content, comments }: Props) => {
     <>
       <CommentContainer>
         <SideContainer>
-          {comments.length > 0 && (
-            <ButtonArithmetic onClick={switchChildsDisplay} symbol={childsDispaly ? 'substract' : 'add'} />
-          )}
+          {comments.length > 0 &&
+            (loaderIsShow ? (
+              <CircularProgress color="primary" size={15} />
+            ) : (
+              <ButtonArithmetic onClick={displayChilds} symbol={childsDispaly ? 'substract' : 'add'} />
+            ))}
           <Decor height="100%" />
         </SideContainer>
         <div>
