@@ -24,7 +24,7 @@ const Article = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isValidating && data === null) {
+    if (!isValidating && !data) {
       navigate(ROUTES.NOTFOUND);
     }
   }, [navigate, data, isValidating]);
