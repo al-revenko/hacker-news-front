@@ -5,7 +5,7 @@ import { isOk } from './utils';
 const axiosInst = axios.create({
   baseURL: import.meta.env.VITE_BACKEND_URL,
   validateStatus: function (status) {
-    return status < 500;
+    return status < 400;
   },
 });
 
@@ -20,6 +20,7 @@ export async function getFeedList(category: FeedCategory, count: number = 0) {
 }
 
 export async function getFeedItem(id: number | string): Promise<Item | null> {
+
   const res = await axiosInst.get<Item>(`item/${id}`);
 
   if (isOk(res)) {
