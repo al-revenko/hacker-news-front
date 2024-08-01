@@ -2,10 +2,10 @@ import Typography from '@mui/material/Typography';
 import { PropsWithChildren } from 'react';
 
 export interface HeadingProp extends PropsWithChildren {
-  variant: 'h1' | 'h2' | 'h3';
+  variant?: 'h1' | 'h2' | 'h3';
 }
 
-const Heading = ({ variant, children }: HeadingProp) => {
+const Heading = ({ variant = 'h2', children }: HeadingProp) => {
   let fontSize: number;
 
   switch (variant) {
