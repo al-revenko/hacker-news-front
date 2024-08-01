@@ -11,18 +11,22 @@ interface Props extends Pick<Item, 'user' | 'time' | 'content' | 'comments'> {
 
 const Comment = ({ CommentsList, user, time, content, comments }: Props) => {
   const [childsDispaly, setChildsDisplay] = useState(false);
+  const [childsIsLoaded, setChildsIsLoaded] = useState(false);
   const [loaderIsShow, setLoaderIsShow] = useState(false);
 
   const timestamp = timestampFormat(time);
 
   const displayChilds = () => {
-    if (!childsDispaly) {
+    if (!childsDispaly && !childsIsLoaded) {
       setLoaderIsShow(true);
 
       setTimeout(() => {
         setLoaderIsShow(false);
+        setChildsIsLoaded(true);
         setChildsDisplay(true);
       }, 500);
+    } else if (!childsDispaly) {
+      setChildsDisplay(true);
     } else {
       setChildsDisplay(false);
     }
@@ -52,8 +56,8 @@ const Comment = ({ CommentsList, user, time, content, comments }: Props) => {
           <Content dangerouslySetInnerHTML={setHTMLContent()} />
         </div>
       </CommentContainer>
-      {childsDispaly && (
-        <ChildrenContainer>
+      {childsIsLoaded && (
+        <ChildrenContainer display={childsDispaly}>
           <CommentsList comments={comments} />
         </ChildrenContainer>
       )}
@@ -117,8 +121,9 @@ const Content = styled('div')`
   }
 `;
 
-const ChildrenContainer = styled('div')`
+const ChildrenContainer = styled('div')<{ display: boolean }>`
   padding-left: ${({ theme }) => theme.spacing(1)};
+  display: ${({ display }) => (display ? 'block' : 'none')};
 `;
 
 export default Comment;
