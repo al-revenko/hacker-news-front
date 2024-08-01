@@ -4,11 +4,9 @@ import muiTheme from '~/libs/muiTheme';
 
 function App() {
   return (
-    <>
-      <ThemeProvider theme={muiTheme}>
-        <Router />
-      </ThemeProvider>
-    </>
+    <ThemeProvider theme={muiTheme}>
+      <Router />
+    </ThemeProvider>
   );
 }
 

@@ -20,7 +20,6 @@ export async function getFeedList(category: FeedCategory, count: number = 0) {
 }
 
 export async function getFeedItem(id: number | string): Promise<Item | null> {
-
   const res = await axiosInst.get<Item>(`item/${id}`);
 
   if (isOk(res)) {

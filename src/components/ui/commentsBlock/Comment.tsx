@@ -40,7 +40,7 @@ const Comment = ({ CommentsList, user, time, content, comments }: Props) => {
     <>
       <CommentContainer>
         <SideContainer>
-          {comments.length > 0 &&
+          {comments.length &&
             (loaderIsShow ? (
               <CircularProgress color="primary" size={15} />
             ) : (
