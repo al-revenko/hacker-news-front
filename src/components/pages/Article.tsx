@@ -16,7 +16,7 @@ import ButtonReload from '~/components/ui/buttons/ButtonReload';
 
 const Article = () => {
   const { id } = useParams<'id'>();
-  const { data, isValidating, mutate } = useSWR(id, () => getFeedItem(id ?? ''), {
+  const { data, isValidating, isLoading, mutate } = useSWR(id, () => getFeedItem(id ?? ''), {
     refreshInterval: TIMINGS.dataUpdateTimeMS,
     revalidateOnFocus: false,
   });
@@ -24,17 +24,17 @@ const Article = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isValidating && !data) {
+    if (!isLoading && !data) {
       navigate(ROUTES.NOTFOUND);
     }
-  }, [navigate, data, isValidating]);
+  }, [navigate, data, isLoading]);
 
   return (
     <PageLayout
       headerProps={{
         leftChild: <LinkBack to={ROUTES.HOME} color="secondary" />,
         rightChild: data && data.url && (
-          <ButtonPage href={data.url} LinkComponent={'a'} size="large" color="secondary" />
+          <ButtonPage href={data.url} size="large" color="secondary" />
         ),
         showLoader: isValidating,
       }}
@@ -46,7 +46,7 @@ const Article = () => {
               <ArticleHead {...data} />
             </HeadSection>
             <CommentSection>
-              <Heading variant="h2">
+              <Heading>
                 {data.comments_count > 0 ? `Comments: ${data.comments_count}` : 'No comments here'}
                 <ButtonReload onClick={() => mutate()} disabled={isValidating} />
               </Heading>

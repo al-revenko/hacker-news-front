@@ -4,11 +4,12 @@ import { PropsWithChildren } from 'react';
 interface Props extends PropsWithChildren {}
 
 const ContentLayout = ({ children }: Props) => {
-  return <Content maxWidth={'md'}>{children}</Content>;
+  return <Content>{children}</Content>;
 };
 
 const Content = styled(Container)`
   height: 100%;
+  max-width: ${({ theme }) => theme.breakpoints.values.md};
 `;
 
 export default ContentLayout;

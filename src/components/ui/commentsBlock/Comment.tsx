@@ -40,7 +40,7 @@ const Comment = ({ CommentsList, user, time, content, comments }: Props) => {
     <>
       <CommentContainer>
         <SideContainer>
-          {comments.length &&
+          {!!comments.length &&
             (loaderIsShow ? (
               <CircularProgress color="primary" size={15} />
             ) : (
@@ -57,7 +57,7 @@ const Comment = ({ CommentsList, user, time, content, comments }: Props) => {
         </div>
       </CommentContainer>
       {childsIsLoaded && (
-        <ChildrenContainer display={childsDispaly}>
+        <ChildrenContainer isShow={childsDispaly}>
           <CommentsList comments={comments} />
         </ChildrenContainer>
       )}
@@ -121,9 +121,9 @@ const Content = styled('div')`
   }
 `;
 
-const ChildrenContainer = styled('div')<{ display: boolean }>`
+const ChildrenContainer = styled('div')<{ isShow: boolean }>`
   padding-left: ${({ theme }) => theme.spacing(1)};
-  display: ${({ display }) => (display ? 'block' : 'none')};
+  display: ${({ isShow }) => (isShow ? 'block' : 'none')};
 `;
 
 export default Comment;

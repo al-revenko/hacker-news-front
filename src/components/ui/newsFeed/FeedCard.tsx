@@ -20,7 +20,7 @@ const FeedCard = ({ id, title, user, points, time, comments_count, positionNumbe
       <PointsCount>{points || 0}</PointsCount>
       <Decor className="article-decor" />
       <Content>
-        <Heading variant="h2">{title}</Heading>
+        <Heading>{title}</Heading>
         <Info>
           <InfoData>{`#${positionNumber}`}</InfoData>
           <InfoData>
