@@ -11,18 +11,23 @@ const PageLayout = ({ headerProps, children }: Props) => {
   return (
     <>
       <Header {...headerProps} />
-      <Content>{children}</Content>
+      <Page>
+        <Content>{children}</Content>
+      </Page>
     </>
   );
 };
 
-const Content = styled('div')`
-  margin-left: calc(100vw - 100%);
+const Page = styled('div')`
   padding-top: ${({ theme }) => theme.spacing(9)};
   padding-bottom: ${({ theme }) => theme.spacing(4)};
   min-height: 100dvh;
   width: 100%;
   background-color: ${COLORS.secondary};
+`;
+
+const Content = styled('div')`
+  padding-left: calc(100vw - 100%);
 `;
 
 export default PageLayout;
