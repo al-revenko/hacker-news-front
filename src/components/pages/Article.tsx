@@ -16,7 +16,7 @@ import ButtonReload from '~/components/ui/buttons/ButtonReload';
 
 const Article = () => {
   const { id } = useParams<'id'>();
-  const { data, isValidating, mutate } = useSWR(id, getFeedItem, {
+  const { data, isValidating, mutate } = useSWR(id, () => getFeedItem(id ?? ''), {
     refreshInterval: TIMINGS.dataUpdateTimeMS,
     revalidateOnFocus: false,
   });
