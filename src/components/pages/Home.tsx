@@ -14,7 +14,7 @@ const Home = () => {
   });
 
   const renderContent = () => {
-    if (data && !!data.length) {
+    if (data && data.length) {
       return <NewsFeed feedItems={data} />;
     }
 
