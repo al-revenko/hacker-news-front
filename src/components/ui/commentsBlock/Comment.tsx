@@ -1,8 +1,9 @@
 import { ComponentType, useState } from 'react';
 import { styled, CircularProgress } from '@mui/material';
+import DOMPurify from 'dompurify';
 import { Item } from '~/api/types';
-import COLORS from '~/const/colors';
 import { timestampFormat } from '~/utils';
+import COLORS from '~/const/colors';
 import ButtonArithmetic from '~/components/ui/buttons/ButtonArithmetic';
 
 interface Props extends Pick<Item, 'user' | 'time' | 'content' | 'comments'> {
@@ -33,7 +34,7 @@ const Comment = ({ CommentsList, user, time, content, comments }: Props) => {
   };
 
   const setHTMLContent = () => {
-    return { __html: content };
+    return { __html: DOMPurify.sanitize(content)};
   };
 
   return (
