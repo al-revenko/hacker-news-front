@@ -33,9 +33,7 @@ const Article = () => {
     <PageLayout
       headerProps={{
         leftChild: <LinkBack to={ROUTES.HOME} color="secondary" />,
-        rightChild: data && data.url && (
-          <ButtonPage href={data.url} size="large" color="secondary" />
-        ),
+        rightChild: data && data.url && <ButtonPage href={data.url} size="large" color="secondary" />,
         showLoader: isValidating,
       }}
     >
