@@ -9,6 +9,7 @@ const CommentsBlock = ({ comments }: Props) => {
   const renderComments = () => {
     return comments.map((comment) => {
       if (comment.type !== 'comment') {
+        console.warn(`Unexpected item type: ${comment.type}`);
         return null;
       }
 
