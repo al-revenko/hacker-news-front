@@ -44,13 +44,13 @@ const Comment = ({ CommentsList, user, time, content, comments }: Props) => {
             (loaderIsShow ? (
               <CircularProgress color="primary" size={15} />
             ) : (
-              <ButtonArithmetic onClick={displayChilds} symbol={childsDispaly ? 'substract' : 'add'} />
+              <ButtonArithmetic onClick={displayChilds} symbol={childsDispaly ? 'subtract' : 'add'} />
             ))}
           <Decor height="100%" />
         </SideContainer>
         <div>
           <CommentHead>
-            <User className="comment-user">{user || 'unknown'}</User>
+            <User className="comment-user">{user ?? 'unknown'}</User>
             <span>{`${timestamp.date} ${timestamp.time}`}</span>
           </CommentHead>
           <Content dangerouslySetInnerHTML={setHTMLContent()} />

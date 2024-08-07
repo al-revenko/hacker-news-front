@@ -1,26 +1,19 @@
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
-import IconButton from '@mui/material/IconButton';
-import { BtnProps } from './btnProps.type';
 import { SvgIconTypeMap } from '@mui/material';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
+import IconButton from '@mui/material/IconButton';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
+import { BtnProps } from './btnProps.type';
 
+type IconMapType = Record<'add' | 'subtract', OverridableComponent<SvgIconTypeMap<{}, 'svg'>>>;
 interface Props extends BtnProps {
-  symbol: 'add' | 'substract';
+  symbol: keyof IconMapType;
 }
 
 const ButtonArithmetic = ({ symbol, size, ...props }: Props) => {
-  let Icon: OverridableComponent<SvgIconTypeMap<{}, 'svg'>>;
+  const iconMap: IconMapType = { add: AddIcon, subtract: RemoveIcon };
 
-  switch (symbol) {
-    case 'add':
-      Icon = AddIcon;
-      break;
-
-    case 'substract':
-      Icon = RemoveIcon;
-      break;
-  }
+  const Icon = iconMap[symbol];
 
   return (
     <IconButton {...props}>
